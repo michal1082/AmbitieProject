@@ -2248,6 +2248,8 @@ MonoBehaviour:
   lrGo2: {fileID: 769470516}
   lrGo3: {fileID: 1307085237}
   lrGo4: {fileID: 863642661}
+  GrappleActive: 0
+  moveSpeed: 3
 --- !u!114 &1433274075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2612,9 +2614,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780082101}
-  m_LocalRotation: {x: 0, y: 0, z: 0.012578889, w: -0.99992096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1.42}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 136356761}

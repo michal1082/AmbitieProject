@@ -23,6 +23,11 @@ public class Grapples : MonoBehaviour
     LineRenderer lr3;
     LineRenderer lr4;
 
+    Rigidbody rb;
+
+    public bool GrappleActive;
+    public float moveSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +35,8 @@ public class Grapples : MonoBehaviour
         lr2 = lrGo2.GetComponent<LineRenderer>();
         lr3 = lrGo3.GetComponent<LineRenderer>();
         lr4 = lrGo4.GetComponent<LineRenderer>();
+
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -38,7 +45,28 @@ public class Grapples : MonoBehaviour
         grapple.transform.Rotate(0,0,1 * rotateSpeed * Time.deltaTime);
 
      
-     
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            rb.useGravity = false;
+            rb.velocity = Vector3.zero;
+            GetComponent<PlayerMovement>().enabled = false;
+            GrappleActive = true;
+            rotateSpeed = 0;
+            SpringJoint addedJoint = gameObject.AddComponent<SpringJoint>();
+        }
+        if (GrappleActive == true)
+        {
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
+
+            //rb.AddForce(horizontal * moveSpeed * Time.deltaTime, 0,0);
+            //rb.AddForce(0, vertical * moveSpeed * Time.deltaTime, 0);
+            if (horizontal != 0 || vertical != 0)
+            {
+                rb.velocity = new Vector3(horizontal * moveSpeed, vertical * moveSpeed);
+            }
+
+        }
 
 
         /*   grappleOne = Physics.Raycast(transform.position, Vector3.up, float.PositiveInfinity);
