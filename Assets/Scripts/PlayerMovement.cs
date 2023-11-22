@@ -40,10 +40,14 @@ public class PlayerMovement : MonoBehaviour
 
     public int currentSide;
 
+    public float turnTime;
+
     private float horizontalSpeedStart;
     private float maxVelocityXStart;
 
     public float highscore;
+
+    public Animator an;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +62,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Animations();
 
        if (Input.GetKey(KeyCode.R))
         {
@@ -175,5 +181,29 @@ public class PlayerMovement : MonoBehaviour
         canMove = false;
         yield return new WaitForSeconds(.1f);
         canMove = true;
+    }
+
+    public void Animations()
+    {
+        if (grounded)
+        {
+            an.SetBool("grounded", true);
+        } else an.SetBool("grounded", false);
+
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            an.SetBool("isRunning", true);
+        } else an.SetBool("isRunning", false);
+
+     /*   if (Input.GetAxis("Horizontal") > 0)
+        {
+            var desiredRotQ = Quaternion.Euler(transform.eulerAngles.x, 90, transform.eulerAngles.z);
+            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * turnTime);
+        }
+        else if (Input.GetAxis("Horizontal") < 0)
+        {
+            var desiredRotQ = Quaternion.Euler(transform.eulerAngles.x, -90, transform.eulerAngles.z);
+            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * turnTime);
+        }*/
     }
 }
