@@ -194,16 +194,5 @@ public class PlayerMovement : MonoBehaviour
         {
             an.SetBool("isRunning", true);
         } else an.SetBool("isRunning", false);
-
-     /*   if (Input.GetAxis("Horizontal") > 0)
-        {
-            var desiredRotQ = Quaternion.Euler(transform.eulerAngles.x, 90, transform.eulerAngles.z);
-            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * turnTime);
-        }
-        else if (Input.GetAxis("Horizontal") < 0)
-        {
-            var desiredRotQ = Quaternion.Euler(transform.eulerAngles.x, -90, transform.eulerAngles.z);
-            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * turnTime);
-        }*/
     }
 }
