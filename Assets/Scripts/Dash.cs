@@ -9,6 +9,8 @@ public class Dash : MonoBehaviour
     Rigidbody rb;
     MeshRenderer mr;
 
+    public GameObject playerModel;
+
     public float lookdir;
     public int direction;
 
@@ -46,7 +48,7 @@ public class Dash : MonoBehaviour
     public IEnumerator Dashing()
     {
         bc.enabled = false;
-        mr.enabled = false;
+        playerModel.SetActive(false);
         rb.useGravity = false;
         GetComponent<PlayerMovement>().canFall = false;
         rb.velocity = Vector3.zero;
@@ -62,7 +64,7 @@ public class Dash : MonoBehaviour
         rb.velocity = Vector3.zero;
         GetComponent<PlayerMovement>().canFall = true;
         rb.useGravity = true;
-        mr.enabled = true;
+        playerModel.SetActive(true);
         bc.enabled = true;
     }
 }

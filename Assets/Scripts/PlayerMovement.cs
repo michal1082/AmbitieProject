@@ -190,9 +190,16 @@ public class PlayerMovement : MonoBehaviour
             an.SetBool("grounded", true);
         } else an.SetBool("grounded", false);
 
-        if (Input.GetAxis("Horizontal") != 0)
+        if (Input.GetAxisRaw("Horizontal") != 0)
         {
             an.SetBool("isRunning", true);
         } else an.SetBool("isRunning", false);
+
+        if (currentSide != 0)
+        {
+            an.SetBool("onWall", true);
+        }
+        else an.SetBool("onWall", false);
+      
     }
 }
