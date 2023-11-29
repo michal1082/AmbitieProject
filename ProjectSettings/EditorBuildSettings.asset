@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Lobby.unity
+    guid: acc4e2a084972784bb05f78669a0958a
+  - enabled: 1
+    path: Assets/Scenes/LVL1.unity
+    guid: 7f01011ca82b05b4782ba92b132ef247
+  - enabled: 1
+    path: Assets/Scenes/Boss1.unity
+    guid: f6b91dc6b586adf439372a20192c5f1b
+  - enabled: 1
+    path: Assets/Scenes/LVL2.unity
+    guid: 9a19a55cbced888499596a709e3b72c4
+  - enabled: 1
+    path: Assets/Scenes/Boss2.unity
+    guid: fc54dcc77b9857c41af279b499a83e89
+  - enabled: 1
+    path: Assets/Scenes/EndLVL.unity
+    guid: defa683dee7740b4b9992ee2fe72ad73
   m_configObjects: {}

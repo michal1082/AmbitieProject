@@ -47,6 +47,7 @@ public class Dash : MonoBehaviour
 
     public IEnumerator Dashing()
     {
+        // disbale all movement and reset velocity
         bc.enabled = false;
         playerModel.SetActive(false);
         rb.useGravity = false;
@@ -54,13 +55,18 @@ public class Dash : MonoBehaviour
         rb.velocity = Vector3.zero;
         Instantiate(dashCloud, gameObject.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(.4f);
+
+        // move player position
         rb.velocity = Vector3.zero;
         gameObject.transform.position = new Vector3(gameObject.transform.position.x + direction * dashPower,gameObject.transform.position.y,gameObject.transform.position.z);
         yield return new WaitForSeconds(.2f);
+
+        // create cloud on new position
         Instantiate(dashCloud, gameObject.transform.position, Quaternion.identity);
-     
         rb.velocity = Vector3.zero;
         yield return new WaitForSeconds(.1f);
+
+        // enable all movement
         rb.velocity = Vector3.zero;
         GetComponent<PlayerMovement>().canFall = true;
         rb.useGravity = true;

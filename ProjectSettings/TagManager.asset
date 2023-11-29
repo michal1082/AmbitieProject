@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Wall
+  - Gem1
+  - teleport1
+  - teleport2
+  - teleportMiddle
+  - Gem2
+  - Boss1Teleport
+  - Boss2Teleport
   layers:
   - Default
   - TransparentFX

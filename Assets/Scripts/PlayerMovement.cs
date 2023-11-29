@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -45,7 +46,9 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalSpeedStart;
     private float maxVelocityXStart;
 
-    public float highscore;
+    public GameObject attackPoint;
+
+    public bool canAttack;
 
     public Animator an;
     // Start is called before the first frame update
@@ -55,8 +58,9 @@ public class PlayerMovement : MonoBehaviour
         horizontalSpeedStart = horizontalSpeed;
         maxVelocityXStart = maxVelocityX;
 
+        canAttack = true;
+
         rb = GetComponent<Rigidbody>();
-        highscore = 0;
     }
 
     // Update is called once per frame
@@ -65,16 +69,12 @@ public class PlayerMovement : MonoBehaviour
 
         Animations();
 
-       if (Input.GetKey(KeyCode.R))
+        // attack
+        if (Input.GetKey(KeyCode.Z) && (currentSide == 0 || grounded) && canAttack)
         {
-            highscore = 0;
+            an.Play("Stable Sword Outward Slash");
+            StartCoroutine(Attack());
         }
-        
-        if (transform.position.y > highscore)
-        {
-            highscore = transform.position.y;
-        }
-        Debug.Log(highscore);
 
         horizontal = horizontalSpeed * Input.GetAxisRaw("Horizontal");
         vertical = verticalSpeed * Input.GetAxisRaw("Vertical");
@@ -183,6 +183,35 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
     }
 
+    public IEnumerator Attack()
+    {
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.transform.position,2);
+
+        foreach(Collider enemy in hitEnemies)
+        {
+            // ragdoll enemy
+            if (enemy.name == "Enemy")
+            {
+                Debug.Log(enemy.name);
+            }
+
+            if (enemy.name == "Boss")
+            {
+                enemy.GetComponent<Boss1>().hp -= 10;
+            }
+
+            if (enemy.name == "Boss2")
+            {
+                enemy.GetComponent<Boss2>().hp -= 10;
+            }
+        }
+
+        canAttack = false;
+
+        yield return new WaitForSeconds(.7f);
+        canAttack = true;
+    }
+
     public void Animations()
     {
         if (grounded)
@@ -195,11 +224,66 @@ public class PlayerMovement : MonoBehaviour
             an.SetBool("isRunning", true);
         } else an.SetBool("isRunning", false);
 
-        if (currentSide != 0)
+        if (currentSide != 0 && !grounded)
         {
             an.SetBool("onWall", true);
         }
         else an.SetBool("onWall", false);
       
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+            if (collision.gameObject.CompareTag("Gem1"))
+            {
+                SceneManager.LoadScene(0);
+                GameManager.Instance.hasRedGem = true;
+            }
+
+        if (collision.gameObject.CompareTag("Gem2"))
+        {
+            SceneManager.LoadScene(0);
+            GameManager.Instance.hasBlueGem = true;
+        }
+
+        if (collision.gameObject.CompareTag("Boss1Teleport"))
+        {
+            SceneManager.LoadScene(2);
+            GameManager.Instance.hasBlueGem = true;
+        }
+
+        if (collision.gameObject.CompareTag("Boss2Teleport"))
+        {
+            SceneManager.LoadScene(4);
+            GameManager.Instance.hasBlueGem = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("teleport1"))
+        {
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                Debug.Log("teleport");
+                SceneManager.LoadScene(1);
+            }
+        }
+
+        if (other.gameObject.CompareTag("teleport2"))
+        {
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                SceneManager.LoadScene(3);
+            }
+        }
+
+        if (other.gameObject.CompareTag("teleportMiddle"))
+        {
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                SceneManager.LoadScene(5);
+            }
+        }
     }
 }
