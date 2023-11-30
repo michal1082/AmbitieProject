@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class MeleEnemy : MonoBehaviour
 {
@@ -44,18 +45,23 @@ public class MeleEnemy : MonoBehaviour
             }
         
         }  else seePlayer = false;
-       
+
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) < 5)
+        {
+            seePlayer = true;
+            timer = 3;
+        } else seePlayer = false;
+
 
         if (timer > 0)
         {
             nav.SetDestination(player.transform.position);
             an.SetBool("running", true);
-            RandomDir();
         } else
         {          
          nav.SetDestination(gameObject.transform.position);
          an.SetBool("running", false);
-         transform.LookAt(new Vector3(randomDir,1,0));
+         transform.LookAt(new Vector3(-10000,0,0));
          seePlayer = false;
         }
 
@@ -79,11 +85,7 @@ public class MeleEnemy : MonoBehaviour
     public IEnumerator KillPlayer()
     {
         yield return new WaitForSeconds(.5f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Debug.Log("Player killed");
-    }
-
-    public void RandomDir()
-    {
-       randomDir = Random.Range(-1000,1000);
     }
 }

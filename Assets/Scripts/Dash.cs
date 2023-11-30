@@ -18,12 +18,16 @@ public class Dash : MonoBehaviour
 
     public GameObject dashCloud;
 
+    public bool canDash;
+
     // Start is called before the first frame update
     void Start()
     {
         bc = GetComponent<BoxCollider>();
         rb = GetComponent<Rigidbody>(); 
         mr = GetComponent<MeshRenderer>();
+
+        canDash = true;
     }
 
     // Update is called once per frame
@@ -39,7 +43,7 @@ public class Dash : MonoBehaviour
             direction = -1;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dashing());
         }
@@ -48,6 +52,7 @@ public class Dash : MonoBehaviour
     public IEnumerator Dashing()
     {
         // disbale all movement and reset velocity
+        canDash = false;
         bc.enabled = false;
         playerModel.SetActive(false);
         rb.useGravity = false;
@@ -72,5 +77,8 @@ public class Dash : MonoBehaviour
         rb.useGravity = true;
         playerModel.SetActive(true);
         bc.enabled = true;
+
+        yield return new WaitForSeconds(4f);
+        canDash = true;
     }
 }

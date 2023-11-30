@@ -13,6 +13,8 @@ TagManager:
   - Gem2
   - Boss1Teleport
   - Boss2Teleport
+  - Enemy
+  - lava
   layers:
   - Default
   - TransparentFX

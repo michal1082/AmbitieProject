@@ -147,6 +147,11 @@ public class PlayerMovement : MonoBehaviour
             currentSide = 1;
         }
         else if (rightSide == true) { currentSide = -1; } else currentSide = 0;
+
+        if (Input.GetKey(KeyCode.Backspace))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     private void FixedUpdate()
@@ -190,9 +195,10 @@ public class PlayerMovement : MonoBehaviour
         foreach(Collider enemy in hitEnemies)
         {
             // ragdoll enemy
-            if (enemy.name == "Enemy")
+            if (enemy.CompareTag("Enemy"))
             {
                 Debug.Log(enemy.name);
+                enemy.GetComponent<MeleEnemy>().alive = false;
             }
 
             if (enemy.name == "Boss")
@@ -249,13 +255,16 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Boss1Teleport"))
         {
             SceneManager.LoadScene(2);
-            GameManager.Instance.hasBlueGem = true;
         }
 
         if (collision.gameObject.CompareTag("Boss2Teleport"))
         {
             SceneManager.LoadScene(4);
-            GameManager.Instance.hasBlueGem = true;
+        }
+
+        if (collision.gameObject.CompareTag("lava"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 54610143}
   m_Layer: 0
   m_Name: rightBarSpike
-  m_TagString: Untagged
+  m_TagString: lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2424,7 +2424,7 @@ GameObject:
   - component: {fileID: 910671669}
   m_Layer: 0
   m_Name: upRightSpike
-  m_TagString: Untagged
+  m_TagString: lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4251,7 +4251,7 @@ GameObject:
   - component: {fileID: 1423968879}
   m_Layer: 0
   m_Name: LeftBarSpike
-  m_TagString: Untagged
+  m_TagString: lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4678,7 +4678,7 @@ GameObject:
   - component: {fileID: 1623698532}
   m_Layer: 0
   m_Name: bottomSpike
-  m_TagString: Untagged
+  m_TagString: lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4796,7 +4796,7 @@ GameObject:
   - component: {fileID: 1653607089}
   m_Layer: 0
   m_Name: rightBlockSpike
-  m_TagString: Untagged
+  m_TagString: lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5230,7 +5230,7 @@ GameObject:
   - component: {fileID: 1766407693}
   m_Layer: 0
   m_Name: upLeftSpike
-  m_TagString: Untagged
+  m_TagString: lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6210,7 +6210,7 @@ GameObject:
   - component: {fileID: 2019882683}
   m_Layer: 0
   m_Name: leftBlockSpike
-  m_TagString: Untagged
+  m_TagString: lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
